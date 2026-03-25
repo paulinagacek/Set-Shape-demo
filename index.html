@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IWA setShape Origin Shift Test</title>
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/main.ts" defer type="module"></script>
+</head>
+
+<body>
+    <div id="workspace">
+        <div id="main-app">
+            <div id="custom-title-bar" class="draggable">
+                <span class="title-text">My Frameless App</span>
+                <button id="btn-maximize" class="window-control">🗖</button>
+                <button id="btn-close" class="window-control">X</button>
+            </div>
+            <p>Desktop Coordinates: <span id="coords"></span></p>
+            <div>
+                <span class="hidden-in-unframed bold">not</span> unframed
+            </div>
+            <hr/>
+
+            <div class="toggle-container">
+                <span class="toggle-label">Static Buffer</span>
+                <input type="checkbox" id="toggle-buffer-checkbox" class="toggle-checkbox">
+                <label for="toggle-buffer-checkbox" class="toggle-switch"></label>
+            </div>
+
+
+            <div id="controls">
+                <button id="btn-top-left">1. Spawn Top-Left Tooltip (-50, -50)</button>
+                <button id="btn-left">2. Spawn Left Tooltip (-50, 50)</button>
+                <button id="btn-top">3. Spawn Top Tooltip (50, -50)</button>
+                <button id="btn-bottom-right">4. Spawn Bottom-Right Tooltip (+W, +H)</button>
+                <button id="btn-reset">5. Reset App</button>
+                <button id="btn-remove-setshape">6. Remove Setshape</button>
+            </div>
+        </div>
+        <div id="popups-container"></div>
+    </div>
+
+</body>
+
+</html>

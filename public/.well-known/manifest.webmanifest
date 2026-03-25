@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "SetShape demo",
+  "short_name": "set-shape-demo",
+  "version": "0.0.1",
+  "description": "Demonstrates capabilities of setShape by spawning tooltips",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/images/icon.png",
+      "type": "image/png",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "permissions_policy": {
+    "cross-origin-isolated": ["self"],
+    "window-management": ["self"]
+  },
+  "display": "standalone",
+  "display_override": ["unframed"]
+}

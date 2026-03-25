@@ -1,0 +1,162 @@
+ body {
+     margin: 0;
+     overflow: hidden;
+     background-color: transparent;
+     /* Crucial for setShape holes */
+     font-family: sans-serif;
+ }
+
+ /* The master container that we will shift via linear transformation */
+ #workspace {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     transform-origin: top left;
+ }
+
+ /* The Main App UI */
+ #main-app {
+     position: absolute;
+     background-color: #2c3e50;
+     color: white;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+     padding: 20px;
+     box-sizing: border-box;
+ }
+
+ /* Tooltip styling */
+ .tooltip {
+     position: absolute;
+     background-color: #f1c40f;
+     color: #333;
+     padding: 10px;
+     border: 1px solid #d4ac0d;
+     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+     font-weight: bold;
+ }
+
+ /* Just some test controls */
+ #controls {
+     margin-top: 20px;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+
+ button {
+     padding: 8px;
+     cursor: pointer;
+     /* Prevent text highlighting on the label */
+     user-select: none;
+     -webkit-user-select: none;
+     -ms-user-select: none;
+ }
+
+ #custom-title-bar {
+     height: 40px;
+     width: 100%;
+     background-color: #17212a;
+     /* Slightly darker than the app background */
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 0 10px;
+     box-sizing: border-box;
+     cursor: grab;
+
+     /* Prevents the user from accidentally highlighting the title text while dragging */
+     user-select: none;
+ }
+
+ #custom-title-bar:active {
+     cursor: grabbing;
+ }
+
+ .title-text {
+     color: white;
+     font-weight: bold;
+ }
+
+ .window-control {
+     background: transparent;
+     border: none;
+     color: white;
+     cursor: pointer;
+     -webkit-app-region: no-drag;
+ }
+
+ .window-control:hover {
+     background-color: #e74c3c;
+     /* Red hover effect for close button */
+ }
+
+ .draggable {
+     app-region: drag;
+ }
+
+
+ .hidden-in-unframed {
+     display: inline;
+ }
+
+ @media (display-mode: borderless) {
+     .hidden-in-unframed {
+         display: none;
+     }
+ }
+
+ #btn-toggle-buffer {
+     margin: auto;
+ }
+
+ /* Container to align text and switch */
+ .toggle-container {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     font-family: sans-serif;
+     font-size: 14px;
+ }
+
+ /* Hide the default checkbox */
+ .toggle-checkbox {
+     display: none;
+ }
+
+ /* Style the background track */
+ .toggle-switch {
+     position: relative;
+     width: 44px;
+     height: 24px;
+     background-color: #ccc;
+     border-radius: 24px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
+
+ /* Style the toggle thumb (the circle) */
+ .toggle-switch::after {
+     content: '';
+     position: absolute;
+     top: 2px;
+     left: 2px;
+     width: 20px;
+     height: 20px;
+     background-color: white;
+     border-radius: 50%;
+     transition: transform 0.3s ease;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+ }
+
+ /* Change background color when checked */
+ .toggle-checkbox:checked+.toggle-switch {
+     background-color: #4CAF50;
+     /* Green active state */
+ }
+
+ /* Move the thumb when checked */
+ .toggle-checkbox:checked+.toggle-switch::after {
+     transform: translateX(20px);
+ }
