@@ -8,7 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
+dist/images
+dist/.well-known
 dist-ssr
 *.local
 .env
@@ -27,4 +28,4 @@ dist-ssr
 #Keys and bundles
 *.pem
 *.wbn
-*.swbn
+# *.swbn

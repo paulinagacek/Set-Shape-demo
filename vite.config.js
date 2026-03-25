@@ -52,7 +52,7 @@ if (NODE_ENV === "production") {
                 dir: "public",
             },
             // The name of the output web bundle
-            output: "iwa-client.swbn",
+            output: "iwa-setshape-demo.swbn",
             // This ensures the web bundle is signed with the key
             integrityBlockSign: {
                 strategy: new wbnSign.NodeCryptoSigningStrategy(key),
