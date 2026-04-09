@@ -304,7 +304,7 @@ class WindowManager {
         const shapeStr = JSON.stringify(shapeRects);
         if (this.lastAppliedShape !== shapeStr) {
             this.lastAppliedShape = shapeStr;
-            const iwaApi = (window as any).chromeos?.isolatedWebApp;
+            const iwaApi = window.chromeos?.isolatedWebApp;
             if (iwaApi && typeof iwaApi.setShape === 'function') {
                 try { await iwaApi.setShape(shapeRects); } catch (e) { console.error("setShape error:", e); }
             }
@@ -312,7 +312,7 @@ class WindowManager {
     }
 
     private clearShapeMask() {
-        const iwaApi = (window as any).chromeos?.isolatedWebApp;
+        const iwaApi = window.chromeos?.isolatedWebApp;
         if (iwaApi && typeof iwaApi.setShape === 'function') {
             try { iwaApi.setShape([]); } catch (e) { console.error("setShape error:", e); }
         }
