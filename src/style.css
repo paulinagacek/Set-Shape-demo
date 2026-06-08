@@ -101,7 +101,7 @@
      display: inline;
  }
 
- @media (display-mode: borderless) {
+ @media (display-mode: unframed) {
      .hidden-in-unframed {
          display: none;
      }
