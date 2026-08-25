@@ -292,6 +292,15 @@ class WindowManager {
     }
 
     // --- CHROME OS SPECIFIC ---
+    private async setWindowShape(shapeRects: DOMRectReadOnly[]): Promise<void> {
+        if (typeof window.setShape === 'function') {
+            return window.setShape(shapeRects);
+        } else if (typeof window.chromeos?.isolatedWebApp?.setShape === 'function') {
+            // Deprecated: window.chromeos.isolatedWebApp.setShape moved to window.setShape in M153.
+            return window.chromeos.isolatedWebApp.setShape(shapeRects);
+        }
+    }
+
     private async applyShapeMask(minX: number, minY: number) {
         const shapeRects: DOMRect[] = [
             new DOMRect(Math.round(this.state.app.x - minX), Math.round(this.state.app.y - minY), Math.round(this.state.app.w), Math.round(this.state.app.h))
@@ -304,18 +313,12 @@ class WindowManager {
         const shapeStr = JSON.stringify(shapeRects);
         if (this.lastAppliedShape !== shapeStr) {
             this.lastAppliedShape = shapeStr;
-            const iwaApi = window.chromeos?.isolatedWebApp;
-            if (iwaApi && typeof iwaApi.setShape === 'function') {
-                try { await iwaApi.setShape(shapeRects); } catch (e) { console.error("setShape error:", e); }
-            }
+            try { await this.setWindowShape(shapeRects); } catch (e) { console.error("setShape error:", e); }
         }
     }
 
-    private clearShapeMask() {
-        const iwaApi = window.chromeos?.isolatedWebApp;
-        if (iwaApi && typeof iwaApi.setShape === 'function') {
-            try { iwaApi.setShape([]); } catch (e) { console.error("setShape error:", e); }
-        }
+    private async clearShapeMask() {
+        try { await this.setWindowShape([]); } catch (e) { console.error("setShape error:", e); }
     }
 
     // --- PERMISSIONS ---
